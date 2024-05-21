@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Set Schema</title>
+</head>
+<body>
+    <h1>Set Schema</h1>
+    <form id="schema-form" action="/set-schema.html" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="type">Type:</label>
+        <input type="text" id="type" name="type" required><br>
+        <div id="attributes"></div>
+        <button type="button" id="add-attribute">Add Attribute</button>
+        <button type="submit">Set Schema</button>
+    </form>
+    <script>
+        let attributeIndex = 0;
+        document.getElementById('add-attribute').addEventListener('click', function() {
+            const attributesDiv = document.getElementById('attributes');
+            const attributeDiv = document.createElement('div');
+            attributeDiv.innerHTML = `
+                <label for="attribute-name-${attributeIndex}">Attribute Name:</label>
+                <input type="text" id="attribute-name-${attributeIndex}" name="attribute-name-${attributeIndex}" required><br>
+                <label for="attribute-type-${attributeIndex}">Attribute Type:</label>
+                <input type="text" id="attribute-type-${attributeIndex}" name="attribute-type-${attributeIndex}" required><br>
+            `;
+            attributesDiv.appendChild(attributeDiv);
+            attributeIndex++;
+        });
+    </script>
+</body>
+</html>

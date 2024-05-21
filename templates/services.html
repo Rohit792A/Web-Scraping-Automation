@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script> -->
+    <script src="scripts.js" defer></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>AI Web Scraping Service</title>
+    <style>
+        html, body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #8A2BE2, #FF1493, #FF6347);
+            height: 100%; /* Ensure gradient fills the entire viewport */
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .container p {
+            line-height: 1.6;
+        }
+        .form-container {
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .form-container input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .form-container input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <title>AI Web Scraping Service</title>
+    <style>
+        html, body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--dl-color-gray-white);
+            height: 100%; /* Ensure gradient fills the entire viewport */
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .container p {
+            line-height: 1.6;
+        }
+        .form-container {
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .form-container input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .form-container input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .link-container {
+            text-align: center;
+        }
+
+        .link-container a {
+            display: inline-block;
+            text-decoration: none;
+            color: #333;
+            font-size: 20px;
+            margin: 10px;
+            padding: 15px 30px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .link-container a:hover {
+            background-color: #ed6a5a;
+            color: #fff;
+            border-color: #ed6a5a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: #ed6a5a;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        button:hover {
+            background-color: #d25e50;
+        }
+
+        button#add-attribute {
+            background-color: #28a745;
+        }
+
+        button#add-attribute:hover {
+            background-color: #218838;
+        }
+
+        button#submit {
+            background-color: #dc3545;
+        }
+
+        button#submit:hover {
+            background-color: #c82333;
+        }
+    </style>
+
+
+    <header>
+        <h1>AI Web Scraping Service</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+    </nav>
+    <div class="container">
+        <div class="form-container">
+
+            <div class="link-container">
+                <a href="services_with_time.html" scrape-data>Free Scraping but delay</a>
+            </div>
+
+            <form id="scraping-form" action="/forward/" method="post">
+                <label for="url">Enter URL to Scrape:</label>
+                <input type="text" id="url" name="url" required="">
+                <label for="name">Attribute Name:</label>
+                <input type="text" id="name" name="name" required><br>
+                <label for="type">Attribute Type:</label>
+                <input list="types" id="type" name="type" required><br>
+                <datalist id="types">
+                    <option value="string">
+                    <option value="number">
+                  </datalist><br>
+                <div id="attributes"></div><br>
+                <button type="button" id="add-attribute">Add Attribute</button>
+                <button type="button" id="remove-attribute">Remove Attribute</button>
+                <button type="submit" value="Scrape Data" onclick="">submit</button>
+            </form>
+            <div style="width: 100%; height: 500px; overflow: auto;"></div>
+            <!--<table id="data-table" style="width: 100%;">
+                <thead>
+                    <tr><th>Name </th><th>Price</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table> -->
+            <div id="scrapedData" class="container">{{ forward_message }}</div>
+        </div>
+           
+    </div>
+    
+    <script>
+        let attributeIndex = 0;
+        document.getElementById('add-attribute').addEventListener('click', function() {
+        const attributesDiv = document.getElementById('attributes');
+        const attributeDiv = document.createElement('div');
+        // Add a class or id for easier removal
+        attributeDiv.className = 'attribute-item';
+        attributeDiv.id = "attribute-${attributeIndex}";
+        attributeDiv.innerHTML = `
+            <label for="attribute-name-${attributeIndex}">Attribute Name:</label>
+            <input type="text" id="attribute-name-${attributeIndex}" name="attribute-name-${attributeIndex}" required><br>
+            <label for="attribute-type-${attributeIndex}">Attribute Type:</label>
+            <input list="types-${attributeIndex}" id="attribute-type-${attributeIndex}" name="attribute-type-${attributeIndex}" required><br>
+            <datalist id="types-${attributeIndex}">
+                <option value="string">
+                <option value="number">
+            </datalist>
+            <br>
+        `;
+            attributesDiv.appendChild(attributeDiv);
+            attributeIndex++;
+        });
+
+        document.getElementById('remove-attribute').addEventListener('click', function() {
+            const attributesDiv = document.getElementById('attributes');
+            if (attributesDiv.children.length > 0) {
+                attributesDiv.removeChild(attributesDiv.lastChild);
+                attributeIndex--;
+            }
+        });
+    </script>
+
+
+</body>
+</html>
